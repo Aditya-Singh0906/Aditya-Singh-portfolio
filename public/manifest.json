@@ -1,0 +1,12 @@
+{
+  "name": "Aditya Singh — DevOps & Cloud Engineer",
+  "short_name": "Aditya Singh",
+  "description": "DevOps Engineer building reliable cloud infrastructure, CI/CD pipelines, and platform automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

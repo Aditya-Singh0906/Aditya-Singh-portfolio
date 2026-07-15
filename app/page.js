@@ -16,7 +16,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Command as CmdRoot, CommandInput, CommandList, CommandItem, CommandGroup, CommandEmpty } from '@/components/ui/command'
 
-import { PROFILE, NAV, SKILLS, PROJECTS, EXPERIENCE, CERTIFICATIONS, EDUCATION, ACHIEVEMENTS } from '@/lib/portfolio-data'
+import { PROFILE, NAV, EXTERNAL_NAV, SKILLS, PROJECTS, EXPERIENCE, CERTIFICATIONS, EDUCATION, ACHIEVEMENTS } from '@/lib/portfolio-data'
+import GitHubSection from '@/components/GitHubSection'
 
 const iconMap = { Cloud, Container, GitBranch, Boxes, Activity, Code2, ShieldCheck, Sparkles }
 
@@ -91,6 +92,15 @@ function Nav({ onOpenCmd }) {
                 <span className="relative">{n.label}</span>
               </a>
             ))}
+            {EXTERNAL_NAV.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                className="relative px-3 py-1.5 text-xs mono uppercase tracking-widest text-white/50 hover:text-white/80 transition-colors"
+              >
+                {n.label}
+              </a>
+            ))}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -103,6 +113,15 @@ function Nav({ onOpenCmd }) {
               <span className="mono">Search</span>
               <kbd className="mono ml-2 rounded border border-white/10 px-1.5 py-0.5 text-[10px] text-white/50">⌘K</kbd>
             </button>
+            <a
+              href={PROFILE.resume}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/70 hover:text-white hover:border-white/20 transition-all"
+              aria-label="Download resume"
+            >
+              <FileDown className="h-3.5 w-3.5" /> Resume
+            </a>
             <a
               href="#contact"
               className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-medium hover:bg-white/90 transition-all"
@@ -139,6 +158,25 @@ function Nav({ onOpenCmd }) {
                   {n.label} <ChevronRight className="h-4 w-4 opacity-40" />
                 </a>
               ))}
+              {EXTERNAL_NAV.map(n => (
+                <a
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-white/60"
+                >
+                  {n.label} <ChevronRight className="h-4 w-4 opacity-40" />
+                </a>
+              ))}
+              <a
+                href={PROFILE.resume}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-blue-300"
+              >
+                Download Resume <FileDown className="h-4 w-4" />
+              </a>
             </div>
           </motion.div>
         )}
@@ -726,7 +764,7 @@ function Certifications() {
   return (
     <Section
       id="certifications"
-      eyebrow="05 — Learning"
+      eyebrow="06 — Learning"
       title="Certifications & training."
       description="Structured learning that filled in gaps around the projects I was already building."
     >
@@ -801,7 +839,7 @@ function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="06 — Contact"
+      eyebrow="07 — Contact"
       title="Let's build something reliable."
       description="Best way to reach me is the form below or email. I read everything and reply within a day or two."
     >
@@ -945,6 +983,9 @@ function CommandPalette({ open, setOpen }) {
                   <ChevronRight className="h-3.5 w-3.5 mr-2 text-blue-300" /> Go to {n.label}
                 </CommandItem>
               ))}
+              <CommandItem onSelect={() => { setOpen(false); window.location.href = '/blog' }} className="text-white/80">
+                <ChevronRight className="h-3.5 w-3.5 mr-2 text-blue-300" /> Go to Blog
+              </CommandItem>
             </CommandGroup>
             <CommandGroup heading="Projects">
               {PROJECTS.map(p => (
@@ -987,6 +1028,7 @@ const App = () => {
       <Skills />
       <ProjectsGrid onOpen={setOpenProject} />
       <Experience />
+      <GitHubSection />
       <Certifications />
       <Contact />
       <Footer />

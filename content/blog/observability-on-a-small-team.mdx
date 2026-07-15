@@ -1,0 +1,39 @@
+---
+title: "Observability when you don't have an observability team"
+description: "A pragmatic starting point for monitoring, alerting, and runbooks on a small AWS footprint."
+date: "2025-09-24"
+category: "Cloud"
+tags: ["AWS", "CloudWatch", "Prometheus", "Grafana"]
+author: "Aditya Singh"
+---
+
+Most teams do not need distributed tracing on day one. They need three things: dashboards they trust, alerts that mean something, and runbooks written before the incident.
+
+## Start with the four golden signals
+
+Latency, traffic, errors, saturation. That is it. If you cannot see those four on a single dashboard per service, add them before you do anything else.
+
+## A CloudWatch baseline that pays for itself
+
+```bash
+aws cloudwatch put-metric-alarm \
+  --alarm-name high-cpu-web \
+  --metric-name CPUUtilization \
+  --namespace AWS/EC2 \
+  --statistic Average \
+  --period 60 --evaluation-periods 5 \
+  --threshold 80 --comparison-operator GreaterThanThreshold \
+  --alarm-actions arn:aws:sns:ap-south-1:xxxx:pager
+```
+
+Multi-metric alarms and evaluation periods matter more than tighter thresholds — they kill flappy alerts without hiding real issues.
+
+## Runbooks are documentation you actually reach for
+
+Every alarm links to a page that answers three questions:
+
+1. What does this alarm mean in plain language?
+2. What is the first check to run?
+3. Who owns the fix if it is not obvious?
+
+The day you stop paging humans for problems that could self-heal is the day observability starts paying compound interest.

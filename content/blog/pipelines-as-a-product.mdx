@@ -1,0 +1,53 @@
+---
+title: "Pipelines as a product: how I think about CI/CD ownership"
+description: "Deployment pipelines are not glue code. They are a product with users, ownership, and an SLA."
+date: "2025-11-02"
+category: "CI/CD"
+tags: ["Jenkins", "GitHub Actions", "DevOps", "Platform"]
+author: "Aditya Singh"
+cover: null
+---
+
+For a long time, I treated CI/CD like plumbing — something to set up once and forget. That mental model breaks the moment more than three engineers depend on it.
+
+## The users of your pipeline
+
+Your pipeline has real users. Developers pushing code, reviewers waiting on checks, on-call folks reading logs at 3 AM. Any pipeline that ignores this ends up as a graveyard of stale jobs and hard-coded steps only one person understands.
+
+At Zevo360, the moment I started thinking about the pipeline as a product with users, three things changed:
+
+- I wrote a small README next to every Jenkinsfile explaining stages, secrets, and rollback
+- I added a `validate` stage that runs before anything expensive
+- I stopped copy-pasting Groovy across repos and moved shared logic into a small library
+
+## The blueprint I keep reusing
+
+```groovy
+pipeline {
+  agent any
+  options { timestamps(); ansiColor('xterm') }
+  environment {
+    IMAGE = "registry/${env.JOB_NAME}:${env.BUILD_NUMBER}"
+  }
+  stages {
+    stage('Validate') { steps { sh 'make lint test' } }
+    stage('Build')    { steps { sh 'docker build -t $IMAGE .' } }
+    stage('Push')     { steps { sh 'docker push $IMAGE' } }
+    stage('Deploy')   { steps { sh 'kubectl set image deployment/app app=$IMAGE' } }
+  }
+  post {
+    failure { echo 'Rollback would run here' }
+  }
+}
+```
+
+Boring on purpose. That is the point.
+
+## What good looks like
+
+- A deploy is a non-event
+- Reverting takes one command
+- Every stage has a human-readable owner
+- Nothing in the pipeline requires tribal knowledge
+
+If your pipeline meets those four bars, the rest of your platform gets much easier to reason about.
