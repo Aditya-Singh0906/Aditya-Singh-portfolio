@@ -99,24 +99,37 @@ export default function GitHubSection() {
           </div>
         </Card>
 
-        {/* Stats + Streak + Languages via github-readme-stats */}
+        {/* Stats + Streak + Languages */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://github-readme-stats.vercel.app/api?username=${GH_USER}&show_icons=true&${themeParams}`} alt="GitHub stats" className="w-full max-w-[500px]" loading="lazy" />
+            <img
+              src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api?username=${GH_USER}&show_icons=true&${themeParams}`}
+              alt="GitHub stats"
+              className="w-full max-w-[500px]"
+              loading="lazy"
+            />
           </Card>
+        
           <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://github-readme-streak-stats.herokuapp.com/?user=${GH_USER}&${streakParams}`} alt="GitHub streak" className="w-full max-w-[500px]" loading="lazy" />
+            <img
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=${GH_USER}&${streakParams}`}
+              alt="GitHub streak"
+              className="w-full max-w-[500px]"
+              loading="lazy"
+            />
           </Card>
         </div>
-
+        
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GH_USER}&${langParams}`} alt="Top languages" className="w-full max-w-[500px]" loading="lazy" />
+            <img
+              src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api/top-langs/?username=${GH_USER}&${langParams}`}
+              alt="Top languages"
+              className="w-full max-w-[500px]"
+              loading="lazy"
+            />
           </Card>
-
+        </div>
           {/* Live languages from our API */}
           <Card className="p-6 hover-lift">
             <div className="section-eyebrow mb-4">Language mix (live)</div>
