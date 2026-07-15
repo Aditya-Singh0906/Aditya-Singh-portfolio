@@ -3,7 +3,9 @@
 A modern, high-performance portfolio website showcasing my work as a **DevOps Engineer**, **Cloud Engineer**, **Platform Engineer**, and **AI Automation Builder**. This portfolio highlights enterprise-grade projects, technical expertise, certifications, and engineering case studies while providing an engaging and responsive user experience.
 
 **Live Website:** *Coming Soon*
+
 **GitHub:** https://github.com/Aditya-Singh0906
+
 **LinkedIn:** https://www.linkedin.com/in/aditya-singh-a3646b257/
 
 ---
