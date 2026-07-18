@@ -99,76 +99,76 @@ export default function GitHubSection() {
           </div>
         </Card>
 
-        {/* Stats + Streak + Languages */}
-        <div className="grid md:grid-cols-2 gap-4 mb-6">
-          <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-            <img
-              src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api?username=${GH_USER}&show_icons=true&${themeParams}`}
-              alt="GitHub stats"
-              className="w-full max-w-[500px]"
-              loading="lazy"
-            />
-          </Card>
-        
-          <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-            <img
-              src={`https://github-readme-streak-stats.herokuapp.com/?user=${GH_USER}&${streakParams}`}
-              alt="GitHub streak"
-              className="w-full max-w-[500px]"
-              loading="lazy"
-            />
-          </Card>
-        </div>
-        
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-        <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
-          <img
-            src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api/top-langs/?username=${GH_USER}&${langParams}`}
-            alt="Top languages"
-            className="w-full max-w-[500px]"
-            loading="lazy"
-          />
-        </Card>
-      
-        {/* Live languages from our API */}
-        <Card className="p-6 hover-lift">
-          <div className="section-eyebrow mb-4">Language mix (live)</div>
-      
-          {loading && (
-            <div className="flex items-center gap-2 text-white/40 text-sm">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Loading…
-            </div>
-          )}
-      
-          {!loading && langs.length === 0 && (
-            <div className="text-white/40 text-sm">
-              No public language data yet.
-            </div>
-          )}
-      
-          <div className="space-y-3">
-            {langs.map((l) => (
-              <div key={l.name}>
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-white/70 mono">{l.name}</span>
-                  <span className="text-white/40 mono">{l.pct}%</span>
-                </div>
-      
-                <div className="h-1.5 rounded-full bg-white/[0.05] overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${l.pct}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, ease: "easeOut" }}
-                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-400"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
+       {/* Stats + Streak */}
+<div className="grid md:grid-cols-2 gap-4 mb-6">
+  <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
+    <img
+      src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api?username=${GH_USER}&show_icons=true&${themeParams}`}
+      alt="GitHub stats"
+      className="w-full max-w-[500px]"
+      loading="lazy"
+    />
+  </Card>
+
+  <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
+    <img
+      src={`https://github-readme-streak-stats.herokuapp.com/?user=${GH_USER}&${streakParams}`}
+      alt="GitHub streak"
+      className="w-full max-w-[500px]"
+      loading="lazy"
+    />
+  </Card>
+</div>
+
+{/* Top Languages + Live Languages */}
+<div className="grid md:grid-cols-2 gap-4 mb-6">
+  <Card className="p-3 hover-lift overflow-hidden flex items-center justify-center">
+    <img
+      src={`https://github-readme-stats-aditya-singh13-projects.vercel.app/api/top-langs/?username=${GH_USER}&${langParams}`}
+      alt="Top languages"
+      className="w-full max-w-[500px]"
+      loading="lazy"
+    />
+  </Card>
+
+  <Card className="p-6 hover-lift">
+    <div className="section-eyebrow mb-4">Language mix (live)</div>
+
+    {loading && (
+      <div className="flex items-center gap-2 text-white/40 text-sm">
+        <Loader2 className="h-4 w-4 animate-spin" />
+        Loading…
       </div>
+    )}
+
+    {!loading && langs.length === 0 && (
+      <div className="text-white/40 text-sm">
+        No public language data yet.
+      </div>
+    )}
+
+    <div className="space-y-3">
+      {langs.map((l) => (
+        <div key={l.name}>
+          <div className="flex items-center justify-between text-xs mb-1">
+            <span className="text-white/70 mono">{l.name}</span>
+            <span className="text-white/40 mono">{l.pct}%</span>
+          </div>
+
+          <div className="h-1.5 rounded-full bg-white/[0.05] overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: `${l.pct}%` }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-400"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </Card>
+</div>
         
         {/* Pinned / top repositories */}
         <div className="mb-4 flex items-center justify-between">
