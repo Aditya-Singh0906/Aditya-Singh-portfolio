@@ -6,9 +6,9 @@ const site = PROFILE.siteUrl
 
 export const metadata = {
   metadataBase: new URL(site),
-  title: { default: 'Aditya Singh — DevOps & Cloud Engineer', template: '%s · Aditya Singh' },
-  description: 'DevOps Engineer building reliable cloud infrastructure, CI/CD pipelines, and platform automation. AWS · Kubernetes · Terraform · Jenkins.',
-  keywords: ['DevOps Engineer','Cloud Engineer','Platform Engineer','AWS','Kubernetes','Terraform','Jenkins','Docker','CI/CD','Aditya Singh','Indore'],
+  title: { default: 'Aditya Singh — AWS DevOps Engineer & Infrastructure Services', template: '%s · Aditya Singh' },
+  description: 'AWS DevOps Engineer helping startups deploy applications, automate CI/CD, and monitor infrastructure. AWS deployment services, Docker, and Linux server management.',
+  keywords: ['AWS DevOps Engineer','AWS deployment services','AWS infrastructure','CI/CD automation','AWS monitoring','Docker deployment','Linux server management','Platform Engineer','Terraform','Jenkins'],
   authors: [{ name: 'Aditya Singh', url: site }],
   creator: 'Aditya Singh',
   alternates: { canonical: site },
@@ -38,12 +38,12 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: PROFILE.name,
-  jobTitle: 'DevOps & Cloud Engineer',
+  jobTitle: 'AWS DevOps Engineer',
   url: site,
   email: `mailto:${PROFILE.email}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Indore', addressCountry: 'IN' },
   sameAs: [PROFILE.github, PROFILE.linkedin],
-  knowsAbout: ['DevOps','Cloud Infrastructure','AWS','Kubernetes','Terraform','Docker','CI/CD','Platform Engineering','Site Reliability']
+  knowsAbout: ['AWS DevOps','AWS infrastructure','CI/CD automation','AWS monitoring','Docker deployment','Linux server management','Terraform']
 }
 
 export default function RootLayout({ children }) {

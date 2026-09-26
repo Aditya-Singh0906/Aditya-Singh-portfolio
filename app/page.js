@@ -16,7 +16,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Command as CmdRoot, CommandInput, CommandList, CommandItem, CommandGroup, CommandEmpty } from '@/components/ui/command'
 
-import { PROFILE, NAV, EXTERNAL_NAV, SKILLS, PROJECTS, EXPERIENCE, CERTIFICATIONS, EDUCATION, ACHIEVEMENTS } from '@/lib/portfolio-data'
+import { PROFILE, NAV, EXTERNAL_NAV, SKILLS, PROJECTS, CERTIFICATIONS, EDUCATION, ACHIEVEMENTS } from '@/lib/portfolio-data'
 import GitHubSection from '@/components/GitHubSection'
 
 const iconMap = { Cloud, Container, GitBranch, Boxes, Activity, Code2, ShieldCheck, Sparkles }
@@ -64,9 +64,9 @@ function Nav({ onOpenCmd }) {
       transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-5'}`}
     >
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className={`flex items-center justify-between rounded-full border border-white/[0.06] transition-all ${scrolled ? 'bg-[#080b13]/80 backdrop-blur-xl px-3 py-2' : 'bg-transparent px-3 py-2'}`}>
-          <a href="#home" className="flex items-center gap-2 pl-2">
+      <div className="container-wide">
+        <div className={`flex items-center justify-between rounded-full border border-white/[0.06] transition-all ${scrolled ? 'bg-[#080b13]/90 backdrop-blur-xl px-4 py-3' : 'bg-[#080b13]/40 backdrop-blur-md px-6 py-4 lg:px-8'}`}>
+          <a href="#home" className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-70 ping-slow" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
@@ -75,12 +75,12 @@ function Nav({ onOpenCmd }) {
             <span className="hidden md:inline text-xs text-white/40 mono">/ devops</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
             {NAV.map((n) => (
               <a
                 key={n.id}
                 href={`#${n.id}`}
-                className={`relative px-3 py-1.5 text-xs mono uppercase tracking-widest transition-colors ${active === n.id ? 'text-white' : 'text-white/50 hover:text-white/80'}`}
+                className={`relative px-3 py-2 xl:px-4 text-[10px] xl:text-[11px] mono uppercase tracking-widest transition-colors ${active === n.id ? 'text-white' : 'text-white/50 hover:text-white/80'}`}
               >
                 {active === n.id && (
                   <motion.span
@@ -96,37 +96,37 @@ function Nav({ onOpenCmd }) {
               <a
                 key={n.href}
                 href={n.href}
-                className="relative px-3 py-1.5 text-xs mono uppercase tracking-widest text-white/50 hover:text-white/80 transition-colors"
+                className="relative px-3 py-2 xl:px-4 text-[10px] xl:text-[11px] mono uppercase tracking-widest text-white/50 hover:text-white/80 transition-colors"
               >
                 {n.label}
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 xl:gap-4">
             <button
               onClick={onOpenCmd}
-              className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/60 hover:text-white hover:border-white/20 transition-all"
+              className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-[11px] text-white/60 hover:text-white hover:border-white/20 transition-all"
               aria-label="Open command palette"
             >
               <Search className="h-3.5 w-3.5" />
-              <span className="mono">Search</span>
-              <kbd className="mono ml-2 rounded border border-white/10 px-1.5 py-0.5 text-[10px] text-white/50">⌘K</kbd>
+              <span className="mono hidden xl:inline">Search</span>
+              <kbd className="mono rounded border border-white/10 px-1.5 py-0.5 text-[9px] text-white/50 hidden xl:inline">⌘K</kbd>
             </button>
             <a
               href={PROFILE.resume}
               target="_blank"
               rel="noreferrer"
-              className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/70 hover:text-white hover:border-white/20 transition-all"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-[11px] text-white/70 hover:text-white hover:border-white/20 transition-all uppercase mono tracking-widest"
               aria-label="Download resume"
             >
               <FileDown className="h-3.5 w-3.5" /> Resume
             </a>
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-medium hover:bg-white/90 transition-all"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-2.5 text-[12px] font-bold hover:bg-white/90 transition-all uppercase mono tracking-widest"
             >
-              Get in touch <ArrowRight className="h-3 w-3" />
+              Get in touch <ArrowRight className="h-4 w-4" />
             </a>
             <button
               className="md:hidden rounded-full border border-white/10 bg-white/[0.03] p-2"
@@ -145,7 +145,7 @@ function Nav({ onOpenCmd }) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mx-auto max-w-6xl px-4 mt-2"
+            className="md:hidden container-wide mt-2"
           >
             <div className="rounded-2xl border border-white/[0.06] bg-[#080b13]/95 backdrop-blur-xl p-3">
               {NAV.map(n => (
@@ -325,8 +325,8 @@ function Hero() {
         <div className="aurora bg-cyan-500/20 w-[400px] h-[400px] bottom-0 left-1/3" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 w-full">
-        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 items-center">
+      <div className="relative z-10 container-wide w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -347,10 +347,10 @@ function Hero() {
               transition={{ duration: 0.9, delay: 0.05 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.02]"
             >
-              <span className="gradient-text">Reliable cloud infrastructure,</span>
+              <span className="gradient-text">AWS Infrastructure</span>
               <br />
-              <span className="text-white/60">built for teams that</span>{' '}
-              <span className="blue-gradient-text">ship fast.</span>
+              <span className="text-white/60">That Deploys, Monitors &</span>{' '}
+              <span className="blue-gradient-text">Runs Reliably.</span>
             </motion.h1>
 
             <motion.p
@@ -359,9 +359,7 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-6 max-w-xl text-base md:text-lg text-white/60 leading-relaxed"
             >
-              I&apos;m Aditya — a DevOps &amp; Cloud engineer based in Indore. I build CI/CD pipelines,
-              Kubernetes deployments, and Terraform-driven AWS infrastructure that quietly do their job
-              so engineering teams can move faster.
+              I help startups and small software teams deploy applications on AWS, automate deployments with CI/CD, and monitor their infrastructure with reliable alerts.
             </motion.p>
 
             <motion.div
@@ -370,18 +368,15 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              <a href="#projects" className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm font-medium hover:bg-white/90 transition-all">
-                See selected work
+              <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm font-medium hover:bg-white/90 transition-all">
+                Get Infrastructure Help
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
-              <a href={PROFILE.resume} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-white/80 hover:text-white hover:border-white/20 transition-all">
-                <FileDown className="h-4 w-4" /> Resume
+              <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-white/80 hover:text-white hover:border-white/20 transition-all">
+                View My Work
               </a>
-              <a href={PROFILE.github} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] w-10 h-10 text-white/80 hover:text-white hover:border-white/20 transition-all" aria-label="GitHub">
-                <Github className="h-4 w-4" />
-              </a>
-              <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] w-10 h-10 text-white/80 hover:text-white hover:border-white/20 transition-all" aria-label="LinkedIn">
-                <Linkedin className="h-4 w-4" />
+              <a href={PROFILE.resume} className="inline-flex items-center gap-2 rounded-full border border-transparent px-3 py-2 text-xs text-white/60 hover:text-white transition-all">
+                <FileDown className="h-3 w-3" /> View Resume
               </a>
             </motion.div>
 
@@ -436,7 +431,7 @@ function StackMarquee() {
 function Section({ id, eyebrow, title, description, children, className = '' }) {
   return (
     <section id={id} className={`relative py-24 md:py-32 ${className}`}>
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
+      <div className="container-wide">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -455,42 +450,37 @@ function Section({ id, eyebrow, title, description, children, className = '' }) 
 }
 
 function About() {
-  const stats = [
-    { k: '25+', v: 'Docker images shipped' },
-    { k: '8', v: 'Jenkins pipelines owned' },
-    { k: '99%+', v: 'uptime across envs' },
-    { k: '~75%', v: 'less manual deploy time' }
+  const capabilities = [
+    { icon: Workflow, title: 'Production-style CI/CD workflows' },
+    { icon: Server, title: 'AWS infrastructure automation' },
+    { icon: Activity, title: 'Cloud monitoring & alerting' },
+    { icon: Container, title: 'Containerized deployments' }
   ]
   return (
     <Section
       id="about"
-      eyebrow="01 — About"
+      eyebrow="05 — About"
       title="An engineer who thinks in systems, not tickets."
-      description="I did not fall in love with DevOps because it was trendy. I fell in love with it because I kept getting curious about the boring layer — the one that quietly decides whether a product feels reliable or fragile. That curiosity turned into pipelines, Kubernetes clusters, and Terraform modules."
     >
-      <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 items-start">
+      <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 xl:gap-20 items-start mt-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="space-y-5 text-white/70 md:text-[17px] leading-relaxed"
+          className="space-y-6 text-white/70 md:text-[17px] leading-relaxed max-w-[85ch]"
         >
           <p>
-            I&apos;m currently a DevOps trainee at <span className="text-white">Zevo360 Technologies</span>, where I own CI/CD pipelines
-            and AWS infrastructure across dev, staging, and production. Day to day, that looks like
-            Jenkinsfiles, Terraform plans, Kubernetes manifests, and a lot of small automations that
-            add up.
+            I'm an AWS and DevOps-focused engineer interested in building reliable cloud infrastructure, automated deployment pipelines, and practical monitoring systems.
           </p>
           <p>
-            My engineering philosophy is boring on purpose: keep the moving parts small, make failure
-            modes explicit, and let the automation absorb the repetition. I prefer a Terraform module
-            I can reason about over a clever one-off script that only I understand.
+            My work focuses on turning manual infrastructure tasks into repeatable workflows using AWS, Linux, Docker, CI/CD, Infrastructure as Code, and observability tools.
           </p>
           <p>
-            Longer term, I want to build in the space where AI meets operations — assistants that plan,
-            execute, and audit real infrastructure work under strict guardrails. That is where I think
-            the next generation of platform tooling is heading.
+            I enjoy understanding how systems work end to end — from provisioning infrastructure and deploying applications to monitoring services and troubleshooting failures.
+          </p>
+          <p>
+            I'm also exploring how AI can make infrastructure operations more intelligent through automation, incident analysis, documentation, and operational assistance.
           </p>
           <div className="pt-4 flex items-center gap-2 text-xs mono text-white/40">
             <GraduationCap className="h-3.5 w-3.5" />
@@ -505,18 +495,21 @@ function About() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="grid grid-cols-2 gap-3"
         >
-          {stats.map((s) => (
-            <div key={s.v} className="glass rounded-2xl p-5 hover-lift">
-              <div className="text-3xl md:text-4xl font-semibold gradient-text">{s.k}</div>
-              <div className="mt-2 text-xs text-white/50 leading-snug">{s.v}</div>
-            </div>
-          ))}
+          {capabilities.map((c) => {
+            const Icon = c.icon
+            return (
+              <div key={c.title} className="glass rounded-2xl p-5 hover-lift">
+                <Icon className="h-6 w-6 text-blue-400 mb-3" />
+                <div className="text-sm text-white/80 font-medium leading-snug">{c.title}</div>
+              </div>
+            )
+          })}
           <div className="col-span-2 glass rounded-2xl p-5">
-            <div className="text-xs mono uppercase tracking-widest text-blue-300/80 mb-3">What I&apos;m focused on</div>
+            <div className="text-xs mono uppercase tracking-widest text-blue-300/80 mb-3">What I'm focused on</div>
             <ul className="space-y-2 text-sm text-white/70">
-              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300" />Deployment pipelines that stay green under real load.</li>
-              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300" />Infrastructure as code that other engineers can read.</li>
-              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300" />AI-assisted automation with strong guardrails.</li>
+              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300 shrink-0" />Deployment pipelines that stay green under real load.</li>
+              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300 shrink-0" />Infrastructure as code that other engineers can read.</li>
+              <li className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5 text-blue-300 shrink-0" />AI-assisted automation with strong guardrails.</li>
             </ul>
           </div>
         </motion.div>
@@ -529,11 +522,11 @@ function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="02 — Toolchain"
-      title="The stack I reach for."
+      eyebrow="04 — TECH STACK"
+      title="The Stack I Reach For."
       description="Grouped the way I actually think about it — from provisioning the cloud, to shipping images through pipelines, to keeping the whole thing observable."
     >
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
         {SKILLS.map((cat, i) => {
           const Icon = iconMap[cat.icon] || Cloud
           return (
@@ -544,7 +537,7 @@ function Skills() {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               variants={fadeUp}
-              className="group relative glass rounded-2xl p-5 hover-lift overflow-hidden"
+              className="group relative glass rounded-2xl p-6 hover-lift overflow-hidden flex flex-col"
             >
               <div className={`pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-br ${cat.accent} blur-2xl opacity-60 group-hover:opacity-100 transition-opacity`} />
               <div className="flex items-center gap-2.5 mb-4 relative">
@@ -572,11 +565,11 @@ function ProjectsGrid({ onOpen }) {
   return (
     <Section
       id="projects"
-      eyebrow="03 — Selected work"
-      title="Systems I've built and shipped."
-      description="Each project is a small case study. Click any card for the full breakdown — problem, architecture, challenges, and what I would do differently next time."
+      eyebrow="02 — CASE STUDIES"
+      title="Infrastructure Solutions & Case Studies."
+      description="Click any project for a complete breakdown of the problem, solution, architecture, and results."
     >
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-6 xl:gap-8">
         {PROJECTS.map((p, i) => (
           <motion.button
             key={p.slug}
@@ -586,7 +579,7 @@ function ProjectsGrid({ onOpen }) {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="text-left group relative glass rounded-2xl p-6 hover-lift overflow-hidden"
+            className="text-left group relative glass rounded-2xl p-6 lg:p-8 hover-lift overflow-hidden flex flex-col justify-between"
           >
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.06] to-transparent" />
@@ -662,14 +655,13 @@ function ProjectDialog({ project, onClose }) {
             </DialogHeader>
 
             <div className="mt-5 space-y-6 text-sm text-white/75 leading-relaxed">
-              <Field label="Overview" value={project.overview} />
               <Field label="Problem" value={project.problem} />
               <Field label="Solution" value={project.solution} />
 
               <div>
                 <div className="section-eyebrow mb-2">Architecture</div>
                 <ul className="space-y-1.5">
-                  {project.architecture.map((a) => (
+                  {project.architecture?.map((a) => (
                     <li key={a} className="flex items-start gap-2">
                       <ChevronRight className="h-3.5 w-3.5 mt-1 text-blue-300 shrink-0" />
                       <span>{a}</span>
@@ -678,10 +670,12 @@ function ProjectDialog({ project, onClose }) {
                 </ul>
               </div>
 
+              {project.result && <Field label="Result" value={project.result} />}
+
               <div>
-                <div className="section-eyebrow mb-2">Tech stack</div>
+                <div className="section-eyebrow mb-2">Technologies</div>
                 <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((s) => (
+                  {project.stack?.map((s) => (
                     <span key={s} className="text-[11px] mono px-2 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-white/80">
                       {s}
                     </span>
@@ -689,16 +683,15 @@ function ProjectDialog({ project, onClose }) {
                 </div>
               </div>
 
-              <Field label="Challenges" value={project.challenges} />
-              <Field label="Lessons learned" value={project.lessons} />
-              <Field label="Future improvements" value={project.future} />
-
               <div className="pt-2 flex flex-wrap gap-2">
                 <a href={project.github} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs hover:border-white/20 transition-all">
-                  <Github className="h-3.5 w-3.5" /> GitHub
+                  <Github className="h-3.5 w-3.5" /> View GitHub
                 </a>
                 <a href={project.demo} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs hover:border-white/20 transition-all">
-                  <ExternalLink className="h-3.5 w-3.5" /> Live demo
+                  <ExternalLink className="h-3.5 w-3.5" /> View Demo
+                </a>
+                <a href="#" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs hover:border-white/20 transition-all">
+                  <Layers className="h-3.5 w-3.5" /> View Architecture
                 </a>
               </div>
             </div>
@@ -709,66 +702,17 @@ function ProjectDialog({ project, onClose }) {
   )
 }
 
-function Experience() {
-  return (
-    <Section
-      id="experience"
-      eyebrow="04 — Experience"
-      title="Where I've done the work."
-      description="A short timeline focused on ownership, technology, and impact."
-    >
-      <div className="relative">
-        <div className="absolute left-3 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/5 to-transparent" />
-        {EXPERIENCE.map((e, i) => (
-          <motion.div
-            key={e.company}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, delay: i * 0.08 }}
-            className="relative pl-10 md:pl-0 md:grid md:grid-cols-2 md:gap-12 mb-10"
-          >
-            <div className="hidden md:block text-right pr-10 pt-1">
-              <div className="text-xs mono uppercase tracking-widest text-white/40 flex items-center justify-end gap-2">
-                <CalendarDays className="h-3.5 w-3.5" /> {e.period}
-              </div>
-              <div className="mt-1 text-xs text-white/40">{e.location}</div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-[26px] md:-left-[27px] top-1.5 h-3 w-3 rounded-full bg-blue-400 ring-4 ring-blue-400/15" />
-              <div className="glass rounded-2xl p-6 hover-lift">
-                <div className="md:hidden text-[11px] mono uppercase tracking-widest text-white/40 mb-2">{e.period}</div>
-                <div className="flex items-center gap-2">
-                  <Server className="h-4 w-4 text-blue-300" />
-                  <h3 className="text-lg font-semibold">{e.role} · {e.company}</h3>
-                </div>
-                <p className="text-sm text-white/55 mt-2">{e.summary}</p>
-                <ul className="mt-4 space-y-2">
-                  {e.points.map((p) => (
-                    <li key={p} className="text-sm text-white/75 flex items-start gap-2">
-                      <Check className="h-4 w-4 mt-0.5 text-blue-300 shrink-0" />
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </Section>
-  )
-}
+
 
 function Certifications() {
   return (
     <Section
       id="certifications"
-      eyebrow="06 — Learning"
-      title="Certifications & training."
+      eyebrow="07 — CERTIFICATIONS"
+      title="Certifications & Training."
       description="Structured learning that filled in gaps around the projects I was already building."
     >
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
         {CERTIFICATIONS.map((c, i) => (
           <motion.a
             key={c.name}
@@ -777,7 +721,7 @@ function Certifications() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.05 }}
-            className="group glass rounded-2xl p-5 hover-lift flex items-start justify-between gap-4"
+            className="group glass rounded-2xl p-6 lg:p-8 hover-lift flex items-start justify-between gap-4"
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -803,6 +747,116 @@ function Certifications() {
         </ul>
       </div>
     </Section>
+  )
+}
+
+function Services() {
+  const services = [
+    { icon: Cloud, title: 'AWS Application Deployment', description: 'EC2, Ubuntu/Linux, Docker, Nginx, HTTPS/SSL and production deployment.', cta: 'Discuss Your Setup' },
+    { icon: Workflow, title: 'CI/CD Automation', description: 'GitHub Actions, Jenkins, automated builds, testing and deployment pipelines.', cta: 'Learn More' },
+    { icon: Activity, title: 'AWS Monitoring & Alerting', description: 'CloudWatch dashboards, CPU/memory/disk monitoring, alarms and automated notifications.', cta: 'Learn More' },
+    { icon: Server, title: 'Linux & Server Management', description: 'Server configuration, troubleshooting, backups, security hardening and operational support.', cta: 'Discuss Your Setup' }
+  ]
+  return (
+    <Section id="services" eyebrow="01 — SERVICES" title="AWS & DevOps Services" description="Practical infrastructure solutions for teams that need reliable deployment, automation and monitoring.">
+      <div className="grid md:grid-cols-2 gap-6 mt-12">
+        {services.map((s, i) => {
+          const Icon = s.icon
+          return (
+            <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="group relative glass-strong p-8 rounded-2xl hover:border-blue-500/30 transition-all flex flex-col justify-between min-h-[300px]">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+              <div className="relative z-10">
+                <div className="h-12 w-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/20 group-hover:scale-110 transition-transform">
+                  <Icon className="h-6 w-6 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-white/90">{s.title}</h3>
+                <p className="text-white/60 mb-8 leading-relaxed">{s.description}</p>
+              </div>
+              <div className="relative z-10 mt-auto pt-4 border-t border-white/5">
+                <a href="#contact" className="inline-flex items-center gap-2 text-sm text-blue-400 font-medium hover:text-blue-300 transition-colors">
+                  {s.cta} <ArrowRight className="h-3 w-3" />
+                </a>
+              </div>
+            </motion.div>
+          )
+        })}
+      </div>
+    </Section>
+  )
+}
+
+function WhoIHelp() {
+  const audiences = [
+    { title: 'Startups', description: 'Deploy your application on AWS without building a full infrastructure team.' },
+    { title: 'Software Agencies', description: 'Create repeatable deployment and monitoring infrastructure for client applications.' },
+    { title: 'Small SaaS Teams', description: 'Automate deployments and monitor production infrastructure without managing everything manually.' }
+  ]
+  return (
+    <Section id="who-i-help" title="Built for Teams Without Dedicated DevOps Support">
+      <div className="grid md:grid-cols-3 gap-6 xl:gap-8 mt-12">
+        {audiences.map((a, i) => (
+          <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="glass-panel p-8 xl:p-10 rounded-2xl border border-white/5 hover:border-white/20 transition-all relative overflow-hidden group min-h-[220px] flex flex-col justify-center">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500/0 via-blue-400/0 to-indigo-500/0 group-hover:from-blue-500/50 group-hover:via-blue-400/50 group-hover:to-indigo-500/50 transition-all" />
+            <h3 className="text-xl font-semibold mb-3 text-white/90">{a.title}</h3>
+            <p className="text-white/60 leading-relaxed text-sm">{a.description}</p>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+function HowIWork() {
+  const steps = [
+    { num: '01', title: 'Understand', desc: 'Understand the application, infrastructure and deployment requirements.' },
+    { num: '02', title: 'Deploy', desc: 'Set up the AWS/Linux/Docker environment.' },
+    { num: '03', title: 'Automate', desc: 'Build CI/CD pipelines for repeatable deployments.' },
+    { num: '04', title: 'Monitor', desc: 'Configure dashboards, alerts and infrastructure monitoring.' },
+    { num: '05', title: 'Handover', desc: 'Provide documentation and operational guidance.' }
+  ]
+  return (
+    <Section id="how-i-work" eyebrow="03 — WORKFLOW" title="How I Work">
+      <div className="mt-16 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="flex gap-6 relative pb-12 last:pb-0 group">
+            {i !== steps.length - 1 && (
+              <div className="absolute left-[23px] top-12 bottom-0 w-px bg-white/10 group-hover:bg-blue-500/30 transition-colors" />
+            )}
+            <div className="relative z-10 shrink-0 w-12 h-12 rounded-full border border-white/20 bg-[#080b13] flex items-center justify-center text-blue-400 font-mono text-sm group-hover:border-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all">
+              {step.num}
+            </div>
+            <div className="pt-2.5">
+              <h3 className="text-xl font-medium text-white/90 mb-2">{step.title}</h3>
+              <p className="text-white/60 leading-relaxed">{step.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+function BusinessCTA() {
+  return (
+    <section className="relative py-24 overflow-hidden border-y border-white/[0.05] bg-gradient-to-b from-blue-900/10 to-transparent">
+      <div className="absolute inset-0 grid-bg opacity-30 mask-radial" />
+      <div className="mx-auto max-w-4xl px-4 md:px-6 relative z-10 text-center">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-6">Need Help With Your AWS Infrastructure?</h2>
+          <p className="text-lg text-white/60 mb-10 max-w-2xl mx-auto">
+            Tell me what you're running, where it's hosted, and what infrastructure problem you're trying to solve.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-blue-500 text-white px-6 py-3 text-sm font-medium hover:bg-blue-600 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+              Request Infrastructure Review <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm text-white/80 hover:text-white hover:border-white/20 transition-all">
+              View My Projects
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   )
 }
 
@@ -839,11 +893,11 @@ function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="07 — Contact"
-      title="Let's build something reliable."
-      description="Best way to reach me is the form below or email. I read everything and reply within a day or two."
+      eyebrow="08 — CONTACT"
+      title="Let's Talk About Your Infrastructure."
+      description="If you need help deploying, automating or monitoring an application on AWS, send me the details of your current setup and requirements."
     >
-      <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8">
+      <div className="grid lg:grid-cols-[1fr_1.25fr] gap-8 xl:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -891,9 +945,9 @@ function Contact() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ping-slow" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="text-sm text-white/80">Available for full-time DevOps / Cloud roles</span>
+              <span className="text-sm text-white/80">Available for AWS & DevOps consulting</span>
             </div>
-            <p className="text-sm text-white/50 leading-relaxed">Open to relocation anywhere in India. Remote-friendly. Responds within 24–48 hours.</p>
+            <p className="text-sm text-white/50 leading-relaxed">Open to full-time AWS / DevOps opportunities as well. Remote-friendly. Responds within 24–48 hours.</p>
           </div>
         </motion.div>
 
@@ -908,20 +962,20 @@ function Contact() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-[11px] mono uppercase tracking-widest text-white/50 mb-1.5 block">Name</label>
-              <Input value={form.name} onChange={onChange('name')} placeholder="Jane Doe" className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
+              <Input value={form.name} onChange={onChange('name')} placeholder="Your name" className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
             </div>
             <div>
               <label className="text-[11px] mono uppercase tracking-widest text-white/50 mb-1.5 block">Email</label>
-              <Input type="email" value={form.email} onChange={onChange('email')} placeholder="jane@company.com" className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
+              <Input type="email" value={form.email} onChange={onChange('email')} placeholder="you@company.com" className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
             </div>
           </div>
           <div>
             <label className="text-[11px] mono uppercase tracking-widest text-white/50 mb-1.5 block">Company (optional)</label>
-            <Input value={form.company} onChange={onChange('company')} placeholder="Acme Inc." className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
+            <Input value={form.company} onChange={onChange('company')} placeholder="Company (optional)" className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white h-11" />
           </div>
           <div>
             <label className="text-[11px] mono uppercase tracking-widest text-white/50 mb-1.5 block">Message</label>
-            <Textarea rows={6} value={form.message} onChange={onChange('message')} placeholder="Tell me a bit about what you're building..." className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white resize-none" />
+            <Textarea rows={6} value={form.message} onChange={onChange('message')} placeholder="Tell me about your application, infrastructure, or deployment problem..." className="bg-white/[0.03] border-white/[0.06] focus-visible:ring-blue-400/40 focus-visible:border-blue-400/40 text-white resize-none" />
           </div>
           <div className="flex items-center justify-between pt-2">
             <span className="text-[11px] mono text-white/40">Encrypted in transit · No spam, ever.</span>
@@ -938,7 +992,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="relative border-t border-white/[0.05] py-10 mt-10">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-sm text-white/50">
           <span className="relative flex h-1.5 w-1.5">
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" />
@@ -1024,12 +1078,15 @@ const App = () => {
       <Nav onOpenCmd={() => setCmdOpen(true)} />
       <Hero />
       <StackMarquee />
-      <About />
-      <Skills />
+      <Services />
+      <WhoIHelp />
       <ProjectsGrid onOpen={setOpenProject} />
-      <Experience />
+      <HowIWork />
+      <Skills />
+      <About />
       <GitHubSection />
       <Certifications />
+      <BusinessCTA />
       <Contact />
       <Footer />
 

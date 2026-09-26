@@ -210,3 +210,26 @@ html, body {
   opacity: 0.035;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
 }
+
+/* Responsive wide container */
+.container-wide {
+  width: calc(100% - 32px);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .container-wide { width: calc(100% - 48px); }
+}
+@media (min-width: 1024px) {
+  .container-wide { width: calc(100% - 72px); max-width: 1200px; }
+}
+@media (min-width: 1280px) {
+  .container-wide { width: calc(100% - 80px); max-width: 1400px; }
+}
+@media (min-width: 1440px) {
+  .container-wide { width: calc(100% - 96px); max-width: 1600px; }
+}
+@media (min-width: 1600px) {
+  .container-wide { width: calc(100% - 100px); max-width: 1650px; }
+}
